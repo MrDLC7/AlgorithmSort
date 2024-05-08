@@ -119,7 +119,6 @@
             button_BubbleSort.TabIndex = 0;
             button_BubbleSort.Text = "Бульбашкою";
             button_BubbleSort.UseVisualStyleBackColor = true;
-            button_BubbleSort.Click += this.button1_Click;
             // 
             // button_InsertSort
             // 
