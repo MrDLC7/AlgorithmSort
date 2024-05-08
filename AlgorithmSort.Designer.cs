@@ -122,6 +122,7 @@
             richTextBox_Log.Size = new Size(460, 327);
             richTextBox_Log.TabIndex = 1;
             richTextBox_Log.Text = "";
+            richTextBox_Log.TextChanged += richTextBox_Log_TextChanged;
             // 
             // richTextBox_Array
             // 
@@ -130,6 +131,7 @@
             richTextBox_Array.Size = new Size(460, 327);
             richTextBox_Array.TabIndex = 0;
             richTextBox_Array.Text = "";
+            richTextBox_Array.TextChanged += richTextBox_Log_TextChanged;
             // 
             // panelSort
             // 
@@ -220,6 +222,8 @@
             textBox_SizeArray.TabIndex = 1;
             textBox_SizeArray.Text = "10";
             textBox_SizeArray.TextAlign = HorizontalAlignment.Center;
+            textBox_SizeArray.Click += textBox_SizeArray_Click;
+            textBox_SizeArray.Validating += textBox_SizeArray_Validating;
             // 
             // label_SizeArray
             // 

@@ -13,7 +13,7 @@ namespace AlgorithmSort
 
         public long Time { get => time; }
 
-        //  
+        //  Сортування бульбашкою
         public void Bubble<T>(T[] array) where T : IComparable<T>
         {
             Stopwatch stopwatch = Stopwatch.StartNew();
@@ -34,7 +34,7 @@ namespace AlgorithmSort
             time = stopwatch.ElapsedTicks / (Stopwatch.Frequency / (1000L * 1000L));
         }
 
-        //  
+        //  Сортування вставками
         public void Insert<T>(T[] array) where T : IComparable<T>
         {
             Stopwatch stopwatch = Stopwatch.StartNew();
@@ -54,9 +54,18 @@ namespace AlgorithmSort
             time = stopwatch.ElapsedTicks / (Stopwatch.Frequency / (1000L * 1000L));
         }
 
-        public void MergeSort<T>(T[] array) where T : IComparable<T>
+        //  Сортування злиттям Початок
+        public void Merge<T>(T[] array) where T : IComparable<T>
         {
             Stopwatch stopwatch = Stopwatch.StartNew();
+            MergeSort(array);
+            stopwatch.Stop();
+            time = stopwatch.ElapsedTicks / (Stopwatch.Frequency / (1000L * 1000L));
+        }
+
+        //  Сортування злиттям
+        private void MergeSort<T>(T[] array) where T : IComparable<T>
+        {
             int n = array.Length;
             if (n > 1)
             {
@@ -73,41 +82,66 @@ namespace AlgorithmSort
                 }
                 MergeSort(left);
                 MergeSort(right);
-                Merge(array, left, right);
+                Merging(array, left, right);
             }
-            stopwatch.Stop();
-            time = stopwatch.ElapsedTicks / (Stopwatch.Frequency / (1000L * 1000L));
         }
 
-        private void Merge<T>(T[] array, T[] left, T[] right) where T : IComparable<T>
+        //  Злиття
+        private void Merging<T>(T[] array, T[] left, T[] right) where T : IComparable<T>
         {
             int i = 0, j = 0, k = 0;
             while (i < left.Length && j < right.Length)
             {
                 if (left[i].CompareTo(right[j]) <= 0)
                 {
-                    array[k] = left[i];
-                    i++;
+                    array[k++] = left[i++];
                 }
                 else
                 {
-                    array[k] = right[j];
-                    j++;
+                    array[k++] = right[j++];
                 }
-                k++;
             }
             while (i < left.Length)
             {
-                array[k] = left[i];
-                i++;
-                k++;
+                array[k++] = left[i++];
             }
             while (j < right.Length)
             {
-                array[k] = right[j];
-                j++;
-                k++;
+                array[k++] = right[j++];
             }
+        }
+
+        //  Швидке сортування Початок
+        public void Quick<T>(T[] array) where T : IComparable<T>
+        {
+            Stopwatch stopwatch = Stopwatch.StartNew();
+            QuickSort(array, 0, array.Length - 1);
+            stopwatch.Stop();
+            time = stopwatch.ElapsedTicks / (Stopwatch.Frequency / (1000L * 1000L));
+        }
+
+        //  Швидке сортування
+        private void QuickSort<T>(T[] array, int left, int right) where T : IComparable<T>
+        {
+            int i, last;
+            if (left >= right)                          //  Якщо менше двох елементів у масиві
+                return;            
+            swap(array, left, (left + right) / 2);      //  Середній елемент
+            last = left;                                //  На початок
+            for (i = left + 1; i <= right; i++)         //  Ділення на частини
+                if (array[i].CompareTo(array[left]) > 0)
+                    swap(array, ++last, i);
+            swap(array, left, last);                    //  Перевизначення середнього елементу
+            QuickSort(array, left, last - 1);
+            QuickSort(array, last + 1, right);
+        }
+
+        //  Обмін місцями елементів масиву
+        private void swap<T>(T[] array, int left, int right) where T : IComparable<T>
+        {
+            T temp = array[left];
+            array[left] = array[right];
+            array[right] = temp;
         }
     }
 }
