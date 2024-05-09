@@ -13,10 +13,20 @@ namespace AlgorithmSort
 
         public long Time { get => time; }
 
-        //  Сортування бульбашкою
+        #region BubbleSort
+
+        //  Сортування бульбашкою Start
         public void Bubble<T>(T[] array) where T : IComparable<T>
         {
             Stopwatch stopwatch = Stopwatch.StartNew();
+            BubbleSort(array);
+            stopwatch.Stop();
+            time = stopwatch.ElapsedTicks / (Stopwatch.Frequency / (1000L * 1000L));
+        }
+
+        //  Сортування бульбашкою
+        private void BubbleSort<T>(T[] array) where T : IComparable<T>
+        {
             int n = array.Length;
             for (int i = 0; i < n - 1; i++)
             {
@@ -24,20 +34,30 @@ namespace AlgorithmSort
                 {
                     if (array[j].CompareTo(array[j + 1]) > 0)
                     {
-                        T temp = array[j];
-                        array[j] = array[j + 1];
-                        array[j + 1] = temp;
+                        swap(array, j, j + 1);
                     }
                 }
             }
+        }
+
+        #endregion BubbleSort
+
+
+        #region InsertSort
+
+        //  Сортування вставками Start
+        public void Insert<T>(T[] array) where T : IComparable<T>
+        {
+            Stopwatch stopwatch = Stopwatch.StartNew();
+            InsertSort(array);
             stopwatch.Stop();
             time = stopwatch.ElapsedTicks / (Stopwatch.Frequency / (1000L * 1000L));
         }
 
         //  Сортування вставками
-        public void Insert<T>(T[] array) where T : IComparable<T>
+        private void InsertSort<T>(T[] array) where T : IComparable<T>
         {
-            Stopwatch stopwatch = Stopwatch.StartNew();
+
             int n = array.Length;
             for (int i = 1; i < n; i++)
             {
@@ -50,11 +70,14 @@ namespace AlgorithmSort
                 }
                 array[j + 1] = key;
             }
-            stopwatch.Stop();
-            time = stopwatch.ElapsedTicks / (Stopwatch.Frequency / (1000L * 1000L));
         }
 
-        //  Сортування злиттям Початок
+        #endregion InsertSort
+
+
+        #region MergeSort
+
+        //  Сортування злиттям Start
         public void Merge<T>(T[] array) where T : IComparable<T>
         {
             Stopwatch stopwatch = Stopwatch.StartNew();
@@ -111,7 +134,12 @@ namespace AlgorithmSort
             }
         }
 
-        //  Швидке сортування Початок
+        #endregion MergeSort
+
+
+        #region QuickSort
+
+        //  Швидке сортування Start
         public void Quick<T>(T[] array) where T : IComparable<T>
         {
             Stopwatch stopwatch = Stopwatch.StartNew();
@@ -125,7 +153,7 @@ namespace AlgorithmSort
         {
             int i, last;
             if (left >= right)                          //  Якщо менше двох елементів у масиві
-                return;            
+                return;
             swap(array, left, (left + right) / 2);      //  Середній елемент
             last = left;                                //  На початок
             for (i = left + 1; i <= right; i++)         //  Ділення на частини
@@ -135,6 +163,8 @@ namespace AlgorithmSort
             QuickSort(array, left, last - 1);
             QuickSort(array, last + 1, right);
         }
+
+        #endregion QuickSort
 
         //  Обмін місцями елементів масиву
         private void swap<T>(T[] array, int left, int right) where T : IComparable<T>

@@ -6,7 +6,25 @@ namespace AlgorithmSort
         {
             InitializeComponent();
         }
-        int size = 0;
+
+        private int size = 0;           //  Кількість елементів масиву
+        private object[] array;
+
+
+        //  Генерація масиву випадкових чисел
+        private void button_GenerateArray_Click(object sender, EventArgs e)
+        {
+            size = Convert.ToInt32(textBox_SizeArray.Text);
+            array = new object[size];
+
+            Generate generate = new Generate(array, size, 10000);
+
+        }
+
+
+
+
+
 
         //  Автопрокручування "Лог" в залежності від наповнення
         private void richTextBox_Log_TextChanged(object sender, EventArgs e)
@@ -24,21 +42,20 @@ namespace AlgorithmSort
 
             if (int.TryParse(textBox_SizeArray.Text, out result))
             {
+                if (result >= min && result <= max)
+                {
+                    //  Збереження правильної кількості елементів
+                    size = result;
+                }
+                else
+                {
+                    MessageBox.Show("Не правильно вказано кількість елементів масиву");
+                }
             }
             else
             {
-                MessageBox.Show("Не правильно вказано кількість елементів масиву");
+                MessageBox.Show("Невірне значення кількості елементів масиву");
                 return;
-            }
-
-            if (result >= min && result <= max)
-            {
-                //  Збереження правильної кількості елементів
-                size = result;
-            }
-            else
-            {
-                MessageBox.Show("Не правильно вказано кількість елементів масиву");
             }
         }
 
@@ -47,5 +64,7 @@ namespace AlgorithmSort
         {
             textBox_SizeArray.SelectAll();
         }
+
+
     }
 }

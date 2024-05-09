@@ -213,6 +213,7 @@
             button_GenerateArray.TabIndex = 2;
             button_GenerateArray.Text = "Згенерувати";
             button_GenerateArray.UseVisualStyleBackColor = true;
+            button_GenerateArray.Click += button_GenerateArray_Click;
             // 
             // textBox_SizeArray
             // 

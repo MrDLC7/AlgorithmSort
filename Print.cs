@@ -13,7 +13,7 @@ namespace AlgorithmSort
         //  Виведення дій (Лог)
         static public string InfoLog(string name, int size, long time, string unit)
         {
-            return $"\"{name}\"\nКількість елементів: {size}\nЧас сортування: {time} {unit}.\n\n";
+            return $"\"{name}\"\nКількість елементів: {size}\nЧас сортування: {time} {unit}.\n\n" + InfoLogSeparation();
         }
 
         //  Очищення (Лог)
@@ -32,6 +32,7 @@ namespace AlgorithmSort
                 output += $"{item}" + ((i % 15 == 0) ? "\n": "  ");
                 i++;
             }
+            output += InfoLogSeparation();
             return output;
         }
 
