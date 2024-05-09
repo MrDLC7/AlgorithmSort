@@ -87,6 +87,7 @@
             button_ClearLog.TabIndex = 8;
             button_ClearLog.Text = "Очистити \"Лог\"";
             button_ClearLog.UseVisualStyleBackColor = true;
+            button_ClearLog.Click += button_ClearLog_Click;
             // 
             // button_ClearArray
             // 
@@ -96,6 +97,7 @@
             button_ClearArray.TabIndex = 7;
             button_ClearArray.Text = "Очистити \"Масив\"";
             button_ClearArray.UseVisualStyleBackColor = true;
+            button_ClearArray.Click += button_ClearArray_Click;
             // 
             // label_Log
             // 
@@ -119,8 +121,10 @@
             // 
             richTextBox_Log.Location = new Point(485, 40);
             richTextBox_Log.Name = "richTextBox_Log";
+            richTextBox_Log.ReadOnly = true;
             richTextBox_Log.Size = new Size(460, 327);
             richTextBox_Log.TabIndex = 1;
+            richTextBox_Log.TabStop = false;
             richTextBox_Log.Text = "";
             richTextBox_Log.TextChanged += richTextBox_Log_TextChanged;
             // 
@@ -128,8 +132,10 @@
             // 
             richTextBox_Array.Location = new Point(12, 40);
             richTextBox_Array.Name = "richTextBox_Array";
+            richTextBox_Array.ReadOnly = true;
             richTextBox_Array.Size = new Size(460, 327);
             richTextBox_Array.TabIndex = 0;
+            richTextBox_Array.TabStop = false;
             richTextBox_Array.Text = "";
             richTextBox_Array.TextChanged += richTextBox_Log_TextChanged;
             // 
@@ -165,6 +171,7 @@
             button_QuickSort.TabIndex = 6;
             button_QuickSort.Text = "Швидке";
             button_QuickSort.UseVisualStyleBackColor = true;
+            button_QuickSort.Click += button_QuickSort_Click;
             // 
             // button_MergeSort
             // 
@@ -174,6 +181,7 @@
             button_MergeSort.TabIndex = 5;
             button_MergeSort.Text = "Злиттям";
             button_MergeSort.UseVisualStyleBackColor = true;
+            button_MergeSort.Click += button_MergeSort_Click;
             // 
             // button_InsertSort
             // 
@@ -183,6 +191,7 @@
             button_InsertSort.TabIndex = 4;
             button_InsertSort.Text = "Вставками";
             button_InsertSort.UseVisualStyleBackColor = true;
+            button_InsertSort.Click += button_InsertSort_Click;
             // 
             // button_BubbleSort
             // 
@@ -192,6 +201,7 @@
             button_BubbleSort.TabIndex = 3;
             button_BubbleSort.Text = "Бульбашкою";
             button_BubbleSort.UseVisualStyleBackColor = true;
+            button_BubbleSort.Click += button_BubbleSort_Click;
             // 
             // panelGen
             // 

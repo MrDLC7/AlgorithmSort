@@ -8,7 +8,7 @@ namespace AlgorithmSort
         }
 
         private int size = 0;           //  Кількість елементів масиву
-        private object[] array;
+        private object[]? array;
 
 
         //  Генерація масиву випадкових чисел
@@ -17,8 +17,12 @@ namespace AlgorithmSort
             size = Convert.ToInt32(textBox_SizeArray.Text);
             array = new object[size];
 
-            Generate generate = new Generate(array, size, 10000);
+            Generate generate = new Generate(array, size, 1000);
 
+            panelSort.Enabled = true;
+
+            richTextBox_Array.Text = Print.InfoArray(array);
+            richTextBox_Log.Text += Print.InfoLog("Генерація масиву", size, generate.Time, "мк");
         }
 
 
@@ -49,11 +53,15 @@ namespace AlgorithmSort
                 }
                 else
                 {
+                    textBox_SizeArray.Focus();
+                    textBox_SizeArray.SelectAll();
                     MessageBox.Show("Не правильно вказано кількість елементів масиву");
                 }
             }
             else
             {
+                textBox_SizeArray.Focus();
+                textBox_SizeArray.SelectAll();
                 MessageBox.Show("Невірне значення кількості елементів масиву");
                 return;
             }
@@ -65,6 +73,69 @@ namespace AlgorithmSort
             textBox_SizeArray.SelectAll();
         }
 
+        private void button_ClearArray_Click(object sender, EventArgs e)
+        {
+            richTextBox_Array.Text = "";
+            panelSort.Enabled = false;
+        }
 
+        private void button_ClearLog_Click(object sender, EventArgs e)
+        {
+            richTextBox_Log.Text = "";
+        }
+
+        private void button_BubbleSort_Click(object sender, EventArgs e)
+        {
+            Sort sort = new Sort();
+
+            sort.Bubble(ConvertTo<int>(array));
+
+            richTextBox_Array.Text += Print.InfoArray(array);
+
+            richTextBox_Log.Text += Print.InfoLog("Сортування бульбашкою", size, sort.Time, "мк");
+        }
+
+        private void button_InsertSort_Click(object sender, EventArgs e)
+        {
+            Sort sort = new Sort();
+
+            sort.Insert(ConvertTo<int>(array));
+
+            richTextBox_Array.Text += Print.InfoArray(array);
+
+            richTextBox_Log.Text += Print.InfoLog("Сортування вставками", size, sort.Time, "мк");
+        }
+
+        private void button_MergeSort_Click(object sender, EventArgs e)
+        {
+            Sort sort = new Sort();
+
+            sort.Merge(ConvertTo<int>(array));
+
+            richTextBox_Array.Text += Print.InfoArray(array);
+
+            richTextBox_Log.Text += Print.InfoLog("Сортування злиттям", size, sort.Time, "мк");
+        }
+
+        private void button_QuickSort_Click(object sender, EventArgs e)
+        {
+            Sort sort = new Sort();
+
+            sort.Quick(ConvertTo<int>(array));
+
+            richTextBox_Array.Text += Print.InfoArray(array);
+
+            richTextBox_Log.Text += Print.InfoLog("Швидке сортування", size, sort.Time, "мк");
+        }
+
+        private T[] ConvertTo<T>(object[]? array)
+        {
+            T[] result = new T[array.Length];
+            for (int i = 0; i < array.Length; i++)
+            {
+                result[i] = (T)array[i];
+            }
+            return result;
+        }
     }
 }

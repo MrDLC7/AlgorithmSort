@@ -8,7 +8,7 @@ namespace AlgorithmSort
 {
     internal class Print : AlgorithmSort
     {
-        static private string separate = "----------------------------------------------------------";
+        static private string separate = "-------------------------------------------------------------------";
 
         //  Виведення дій (Лог)
         static public string InfoLog(string name, int size, long time, string unit)
@@ -26,10 +26,10 @@ namespace AlgorithmSort
         static public string InfoArray(object[] nums)
         {
             string output = string.Empty;
-            int i = 0;
+            int i = 1;
             foreach (var item in nums)
             {
-                output += $"{item}" + ((i % 15 == 0) ? "\n": "  ");
+                output += $"{item}" + ((i % 10  == 0) ? "\n": "  ");
                 i++;
             }
             output += InfoLogSeparation();

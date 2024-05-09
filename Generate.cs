@@ -22,7 +22,7 @@ namespace AlgorithmSort
             Stopwatch stopwatch = Stopwatch.StartNew();
             for (int i = 0; i < size; i++)
             {
-                array[i] = random.Next(max_number);
+                array[i] = random.Next(max_number) - max_number / 4;
             }
             stopwatch.Stop();
             time = stopwatch.ElapsedTicks / (Stopwatch.Frequency / (1000L * 1000L));
