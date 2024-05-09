@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 
 namespace AlgorithmSort
 {
@@ -13,7 +14,7 @@ namespace AlgorithmSort
         //  Виведення дій (Лог)
         static public string InfoLog(string name, int size, long time, string unit)
         {
-            return $"\"{name}\"\nКількість елементів: {size}\nЧас сортування: {time} {unit}.\n\n" + InfoLogSeparation();
+            return $"\"{name}\"\nКількість елементів: {size}\nЧас: {time} {unit}." + InfoLogSeparation();
         }
 
         //  Очищення (Лог)
@@ -23,13 +24,14 @@ namespace AlgorithmSort
         }
 
         //  Виведення "Масив"
-        static public string InfoArray(object[] nums)
+        static public string InfoArray(string? details, object[] nums)
         {
             string output = string.Empty;
             int i = 1;
+            output = details + ":\n\n";
             foreach (var item in nums)
             {
-                output += $"{item}" + ((i % 10  == 0) ? "\n": "  ");
+                output += item.ToString() + '\t' + ((i % 7  == 0) ? "\n": " ");
                 i++;
             }
             output += InfoLogSeparation();
@@ -45,7 +47,7 @@ namespace AlgorithmSort
         //  Розділення "Лог" після кожної виконаної дії
         static public string InfoLogSeparation()
         {
-            return $"\n{separate}\n{separate}\n\n";
+            return $"\n\n{separate}\n{separate}\n\n";
         }
     }
 }

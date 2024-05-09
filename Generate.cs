@@ -16,13 +16,13 @@ namespace AlgorithmSort
 
         public long Time { get => time; }
 
-        public Generate(object[] array, int size, int max_number)
+        public Generate(IComparable[] array, int size, int max_number)
         {
             Random random = new Random();
             Stopwatch stopwatch = Stopwatch.StartNew();
             for (int i = 0; i < size; i++)
             {
-                array[i] = random.Next(max_number) - max_number / 4;
+                array[i] = random.Next(max_number) - random.Next(max_number);
             }
             stopwatch.Stop();
             time = stopwatch.ElapsedTicks / (Stopwatch.Frequency / (1000L * 1000L));

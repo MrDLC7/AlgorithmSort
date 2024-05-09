@@ -43,6 +43,8 @@
             button_InsertSort = new Button();
             button_BubbleSort = new Button();
             panelGen = new Panel();
+            textBox_Range = new TextBox();
+            label_Range = new Label();
             button_GenerateArray = new Button();
             textBox_SizeArray = new TextBox();
             label_SizeArray = new Label();
@@ -55,7 +57,7 @@
             // panelMain
             // 
             panelMain.Anchor = AnchorStyles.None;
-            panelMain.BackColor = SystemColors.Window;
+            panelMain.BackColor = Color.FloralWhite;
             panelMain.Controls.Add(panel_PrintResult);
             panelMain.Controls.Add(panelSort);
             panelMain.Controls.Add(panelGen);
@@ -81,22 +83,24 @@
             // 
             // button_ClearLog
             // 
+            button_ClearLog.BackColor = SystemColors.GradientActiveCaption;
             button_ClearLog.Location = new Point(623, 373);
             button_ClearLog.Name = "button_ClearLog";
             button_ClearLog.Size = new Size(180, 35);
             button_ClearLog.TabIndex = 8;
             button_ClearLog.Text = "Очистити \"Лог\"";
-            button_ClearLog.UseVisualStyleBackColor = true;
+            button_ClearLog.UseVisualStyleBackColor = false;
             button_ClearLog.Click += button_ClearLog_Click;
             // 
             // button_ClearArray
             // 
+            button_ClearArray.BackColor = SystemColors.GradientActiveCaption;
             button_ClearArray.Location = new Point(156, 373);
             button_ClearArray.Name = "button_ClearArray";
             button_ClearArray.Size = new Size(180, 35);
             button_ClearArray.TabIndex = 7;
             button_ClearArray.Text = "Очистити \"Масив\"";
-            button_ClearArray.UseVisualStyleBackColor = true;
+            button_ClearArray.UseVisualStyleBackColor = false;
             button_ClearArray.Click += button_ClearArray_Click;
             // 
             // label_Log
@@ -111,7 +115,7 @@
             // label_Array
             // 
             label_Array.AutoSize = true;
-            label_Array.Location = new Point(195, 10);
+            label_Array.Location = new Point(225, 10);
             label_Array.Name = "label_Array";
             label_Array.Size = new Size(56, 20);
             label_Array.TabIndex = 2;
@@ -119,6 +123,7 @@
             // 
             // richTextBox_Log
             // 
+            richTextBox_Log.BackColor = SystemColors.Window;
             richTextBox_Log.Location = new Point(485, 40);
             richTextBox_Log.Name = "richTextBox_Log";
             richTextBox_Log.ReadOnly = true;
@@ -126,10 +131,11 @@
             richTextBox_Log.TabIndex = 1;
             richTextBox_Log.TabStop = false;
             richTextBox_Log.Text = "";
-            richTextBox_Log.TextChanged += richTextBox_Log_TextChanged;
+            richTextBox_Log.TextChanged += richTextBox_TextChanged;
             // 
             // richTextBox_Array
             // 
+            richTextBox_Array.BackColor = SystemColors.Window;
             richTextBox_Array.Location = new Point(12, 40);
             richTextBox_Array.Name = "richTextBox_Array";
             richTextBox_Array.ReadOnly = true;
@@ -137,7 +143,7 @@
             richTextBox_Array.TabIndex = 0;
             richTextBox_Array.TabStop = false;
             richTextBox_Array.Text = "";
-            richTextBox_Array.TextChanged += richTextBox_Log_TextChanged;
+            richTextBox_Array.TextChanged += richTextBox_TextChanged;
             // 
             // panelSort
             // 
@@ -165,48 +171,54 @@
             // 
             // button_QuickSort
             // 
+            button_QuickSort.BackColor = Color.FromArgb(255, 255, 192);
             button_QuickSort.Location = new Point(433, 47);
             button_QuickSort.Name = "button_QuickSort";
             button_QuickSort.Size = new Size(131, 39);
             button_QuickSort.TabIndex = 6;
             button_QuickSort.Text = "Швидке";
-            button_QuickSort.UseVisualStyleBackColor = true;
+            button_QuickSort.UseVisualStyleBackColor = false;
             button_QuickSort.Click += button_QuickSort_Click;
             // 
             // button_MergeSort
             // 
+            button_MergeSort.BackColor = Color.FromArgb(255, 255, 192);
             button_MergeSort.Location = new Point(293, 47);
             button_MergeSort.Name = "button_MergeSort";
             button_MergeSort.Size = new Size(131, 39);
             button_MergeSort.TabIndex = 5;
             button_MergeSort.Text = "Злиттям";
-            button_MergeSort.UseVisualStyleBackColor = true;
+            button_MergeSort.UseVisualStyleBackColor = false;
             button_MergeSort.Click += button_MergeSort_Click;
             // 
             // button_InsertSort
             // 
+            button_InsertSort.BackColor = Color.FromArgb(255, 255, 192);
             button_InsertSort.Location = new Point(153, 47);
             button_InsertSort.Name = "button_InsertSort";
             button_InsertSort.Size = new Size(131, 39);
             button_InsertSort.TabIndex = 4;
             button_InsertSort.Text = "Вставками";
-            button_InsertSort.UseVisualStyleBackColor = true;
+            button_InsertSort.UseVisualStyleBackColor = false;
             button_InsertSort.Click += button_InsertSort_Click;
             // 
             // button_BubbleSort
             // 
+            button_BubbleSort.BackColor = Color.FromArgb(255, 255, 192);
             button_BubbleSort.Location = new Point(13, 47);
             button_BubbleSort.Name = "button_BubbleSort";
             button_BubbleSort.Size = new Size(131, 39);
             button_BubbleSort.TabIndex = 3;
             button_BubbleSort.Text = "Бульбашкою";
-            button_BubbleSort.UseVisualStyleBackColor = true;
+            button_BubbleSort.UseVisualStyleBackColor = false;
             button_BubbleSort.Click += button_BubbleSort_Click;
             // 
             // panelGen
             // 
             panelGen.BackColor = SystemColors.Control;
             panelGen.BorderStyle = BorderStyle.FixedSingle;
+            panelGen.Controls.Add(textBox_Range);
+            panelGen.Controls.Add(label_Range);
             panelGen.Controls.Add(button_GenerateArray);
             panelGen.Controls.Add(textBox_SizeArray);
             panelGen.Controls.Add(label_SizeArray);
@@ -215,26 +227,47 @@
             panelGen.Size = new Size(366, 97);
             panelGen.TabIndex = 0;
             // 
+            // textBox_Range
+            // 
+            textBox_Range.Location = new Point(141, 54);
+            textBox_Range.Name = "textBox_Range";
+            textBox_Range.Size = new Size(90, 27);
+            textBox_Range.TabIndex = 4;
+            textBox_Range.Text = "10000";
+            textBox_Range.TextAlign = HorizontalAlignment.Center;
+            textBox_Range.Click += textBox_Click;
+            textBox_Range.Validating += textBox_Validating;
+            // 
+            // label_Range
+            // 
+            label_Range.AutoSize = true;
+            label_Range.Location = new Point(12, 57);
+            label_Range.Name = "label_Range";
+            label_Range.Size = new Size(130, 20);
+            label_Range.TabIndex = 3;
+            label_Range.Text = "Діапозон чисел: ";
+            // 
             // button_GenerateArray
             // 
-            button_GenerateArray.Location = new Point(12, 48);
+            button_GenerateArray.BackColor = Color.FromArgb(210, 255, 135);
+            button_GenerateArray.Location = new Point(239, 48);
             button_GenerateArray.Name = "button_GenerateArray";
-            button_GenerateArray.Size = new Size(342, 38);
+            button_GenerateArray.Size = new Size(116, 38);
             button_GenerateArray.TabIndex = 2;
             button_GenerateArray.Text = "Згенерувати";
-            button_GenerateArray.UseVisualStyleBackColor = true;
+            button_GenerateArray.UseVisualStyleBackColor = false;
             button_GenerateArray.Click += button_GenerateArray_Click;
             // 
             // textBox_SizeArray
             // 
-            textBox_SizeArray.Location = new Point(238, 10);
+            textBox_SizeArray.Location = new Point(253, 10);
             textBox_SizeArray.Name = "textBox_SizeArray";
-            textBox_SizeArray.Size = new Size(110, 27);
+            textBox_SizeArray.Size = new Size(90, 27);
             textBox_SizeArray.TabIndex = 1;
             textBox_SizeArray.Text = "10";
             textBox_SizeArray.TextAlign = HorizontalAlignment.Center;
-            textBox_SizeArray.Click += textBox_SizeArray_Click;
-            textBox_SizeArray.Validating += textBox_SizeArray_Validating;
+            textBox_SizeArray.Click += textBox_Click;
+            textBox_SizeArray.Validating += textBox_Validating;
             // 
             // label_SizeArray
             // 
@@ -285,5 +318,7 @@
         private Label label_Array;
         private RichTextBox richTextBox_Log;
         private RichTextBox richTextBox_Array;
+        private TextBox textBox_Range;
+        private Label label_Range;
     }
 }
