@@ -12,7 +12,7 @@ namespace AlgorithmSort
 {
     internal class Generate : AlgorithmSort
     {
-        private long time;
+        private long time;          //  Час генерації в мк.
 
         public long Time { get => time; }
 

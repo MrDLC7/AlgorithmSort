@@ -19,6 +19,7 @@ namespace AlgorithmSort
         public void Bubble(IComparable[] array)
         {
             Stopwatch stopwatch = Stopwatch.StartNew();
+            //  Запуск сортування
             BubbleSort(array);
             stopwatch.Stop();
             time = stopwatch.ElapsedTicks / (Stopwatch.Frequency / (1000L * 1000L));
@@ -49,6 +50,7 @@ namespace AlgorithmSort
         public void Insert(IComparable[] array)
         {
             Stopwatch stopwatch = Stopwatch.StartNew();
+            //  Запуск сортування
             InsertSort(array);
             stopwatch.Stop();
             time = stopwatch.ElapsedTicks / (Stopwatch.Frequency / (1000L * 1000L));
@@ -81,6 +83,7 @@ namespace AlgorithmSort
         public void Merge(IComparable[] array)
         {
             Stopwatch stopwatch = Stopwatch.StartNew();
+            //  Запуск сортування
             MergeSort(array);
             stopwatch.Stop();
             time = stopwatch.ElapsedTicks / (Stopwatch.Frequency / (1000L * 1000L));
@@ -143,6 +146,7 @@ namespace AlgorithmSort
         public void Quick(IComparable[] array)
         {
             Stopwatch stopwatch = Stopwatch.StartNew();
+            //  Запуск сортування
             QuickSort(array, 0, array.Length - 1);
             stopwatch.Stop();
             time = stopwatch.ElapsedTicks / (Stopwatch.Frequency / (1000L * 1000L));
@@ -154,8 +158,8 @@ namespace AlgorithmSort
             int i, last;
             if (left >= right)                          //  Якщо менше двох елементів у масиві
                 return;
-            swap(array, left, (left + right) / 2);      //  Середній елемент
-            last = left;                                //  На початок
+            swap(array, left, (left + right) / 2);      //  Середній елемент ->
+            last = left;                                //  -> На початок
             for (i = left + 1; i <= right; i++)         //  Ділення на частини
                 if (array[i].CompareTo(array[left]) <= 0)
                     swap(array, ++last, i);
@@ -166,7 +170,7 @@ namespace AlgorithmSort
 
         #endregion QuickSort
 
-        //  Обмін місцями елементів масиву
+        //  Обмін місцями двох елементів масиву
         private void swap(IComparable[] array, int left, int right)
         {
             IComparable temp = array[left];

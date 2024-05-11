@@ -9,22 +9,29 @@ namespace AlgorithmSort
 
         private int size = 0;                   //  Кількість елементів масиву
         private IComparable[]? array;           //  Основний масив елементів
-        private IComparable[]? arrayTemp;       //  Копія основного масиву для сортувань
+        private IComparable[]? arrayTemp;       //  Масив для сортування
 
 
         //  Генерація масиву випадкових чисел
         private void button_GenerateArray_Click(object sender, EventArgs e)
         {
+            //  Діапазон чисел для масиву
             int range = Convert.ToInt32(textBox_Range.Text);
+
+            //  Розмір масиву
             size = Convert.ToInt32(textBox_SizeArray.Text);
 
+            //  Виділення пам'яті
             array = new IComparable[size];
             arrayTemp = new IComparable[size];
 
+            //  Створення масиву випадкових чисел
             Generate generate = new Generate(array, size, range);
 
+            //  Увімкнути керування сортуванням
             panelSort.Enabled = true;
 
+            //  Відобразити масив і виконані дії
             richTextBox_Array.Text = Print.InfoArray("Згенерований масив", array);
             richTextBox_Log.Text += Print.InfoLog("Генерація масиву", size, generate.Time, "мк");
         }
@@ -34,6 +41,7 @@ namespace AlgorithmSort
         {
             Sort sort = new Sort();
 
+            //  Копіювання для сортування з порівнням до початкового стану
             CopyArray(array, arrayTemp);
 
             sort.Bubble(arrayTemp);
@@ -49,6 +57,7 @@ namespace AlgorithmSort
         {
             Sort sort = new Sort();
 
+            //  Копіювання для сортування з порівнням до початкового стану
             CopyArray(array, arrayTemp);
 
             sort.Insert(arrayTemp);
@@ -64,6 +73,7 @@ namespace AlgorithmSort
         {
             Sort sort = new Sort();
 
+            //  Копіювання для сортування з порівнням до початкового стану
             CopyArray(array, arrayTemp);
 
             sort.Merge(arrayTemp);
@@ -79,6 +89,7 @@ namespace AlgorithmSort
         {
             Sort sort = new Sort();
 
+            //  Копіювання для сортування з порівнням до початкового стану
             CopyArray(array, arrayTemp);
 
             sort.Quick(arrayTemp);
