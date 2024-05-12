@@ -99,7 +99,7 @@ namespace AlgorithmSort
             sort.Insert(arrayTemp);
             InfoArray = Print.InfoArray("Згенерований масив", array);
             InfoArray += Print.InfoArray("Відсортований масив", arrayTemp);
-            Log += Print.InfoLog("Сортування вставками", size, sort.Time, "мк");
+            Log += Print.InfoLog("Сортування вставками - Випадкового масиву", size, sort.Time, "мк");
 
             //  Сотрування вже - відсортованого масиву за зростанням - Зростаючого масиву
             InfoArray += Print.InfoArray("Масив - за зростанням", arrayTemp);
@@ -135,7 +135,7 @@ namespace AlgorithmSort
             sort.Merge(arrayTemp);
             InfoArray = Print.InfoArray("Згенерований масив", array);
             InfoArray += Print.InfoArray("Відсортований масив", arrayTemp);
-            Log += Print.InfoLog("Сортування злиттям", size, sort.Time, "мк");
+            Log += Print.InfoLog("Сортування злиттям - Випадкового масиву", size, sort.Time, "мк");
 
             //  Сотрування вже - відсортованого масиву за зростанням - Зростаючого масиву
             InfoArray += Print.InfoArray("Масив - за зростанням", arrayTemp);
@@ -170,7 +170,7 @@ namespace AlgorithmSort
             sort.Quick(arrayTemp);
             InfoArray = Print.InfoArray("Згенерований масив", array);
             InfoArray += Print.InfoArray("Відсортований масив", arrayTemp);
-            Log += Print.InfoLog("Швидке сортування", size, sort.Time, "мк");
+            Log += Print.InfoLog("Швидке сортування - Випадкового масиву", size, sort.Time, "мк");
 
             //  Сотрування вже - відсортованого масиву за зростанням - Зростаючого масиву
             InfoArray += Print.InfoArray("Масив - за зростанням", arrayTemp);
