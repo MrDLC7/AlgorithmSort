@@ -42,6 +42,7 @@ namespace AlgorithmSort
             InfoArray = Print.InfoArray("Згенерований масив", array);
             Log += Print.InfoLog("Генерація масиву", size, generate.Time, "мк");
 
+            //  Відображення результатів
             richTextBox_Array.Text = InfoArray;
             richTextBox_Log.Text = Log;
         }
@@ -77,7 +78,7 @@ namespace AlgorithmSort
             InfoArray += Print.InfoArray("Відсортований масив", arrayTemp);
             Log += Print.InfoLog("Сортування бульбашкою - Спадаючого масиву", size, sort.Time, "мк");
 
-
+            //  Відображення результатів
             richTextBox_Array.Text = InfoArray;
             richTextBox_Log.Text = Log;
         }
@@ -113,7 +114,7 @@ namespace AlgorithmSort
             InfoArray += Print.InfoArray("Відсортований масив", arrayTemp);
             Log += Print.InfoLog("Сортування вставками - Спадаючого масиву", size, sort.Time, "мк");
 
-
+            //  Відображення результатів
             richTextBox_Array.Text = InfoArray;
             richTextBox_Log.Text = Log;
         }
@@ -149,7 +150,7 @@ namespace AlgorithmSort
             InfoArray += Print.InfoArray("Відсортований масив", arrayTemp);
             Log += Print.InfoLog("Сортування злиттям - Спадаючого масиву", size, sort.Time, "мк");
 
-
+            //  Відображення результатів
             richTextBox_Array.Text = InfoArray;
             richTextBox_Log.Text = Log;
         }
@@ -184,6 +185,7 @@ namespace AlgorithmSort
             InfoArray += Print.InfoArray("Відсортований масив", arrayTemp);
             Log += Print.InfoLog("Швидке сортування - Спадаючого масиву", size, sort.Time, "мк");
 
+            //  Відображення результатів
             richTextBox_Array.Text = InfoArray;
             richTextBox_Log.Text = Log;
         }
