@@ -13,12 +13,14 @@ namespace AlgorithmSort
 
         public long Time { get => time; }
 
+        private Stopwatch stopwatch = new Stopwatch();
+
         #region BubbleSort
 
         //  Сортування бульбашкою Start
         public void Bubble(IComparable[] array)
         {
-            Stopwatch stopwatch = Stopwatch.StartNew();
+            stopwatch.Restart();
             //  Запуск сортування
             BubbleSort(array);
             stopwatch.Stop();
@@ -50,7 +52,7 @@ namespace AlgorithmSort
         //  Сортування вставками Start
         public void Insert(IComparable[] array)
         {
-            Stopwatch stopwatch = Stopwatch.StartNew();
+            stopwatch.Restart();
             //  Запуск сортування
             InsertSort(array);
             stopwatch.Stop();
@@ -87,7 +89,7 @@ namespace AlgorithmSort
         //  Сортування злиттям Start
         public void Merge(IComparable[] array)
         {
-            Stopwatch stopwatch = Stopwatch.StartNew();
+            stopwatch.Restart();
             //  Запуск сортування
             MergeSort(array);
             stopwatch.Stop();
@@ -157,7 +159,7 @@ namespace AlgorithmSort
         //  Швидке сортування Start
         public void Quick(IComparable[] array)
         {
-            Stopwatch stopwatch = Stopwatch.StartNew();
+            stopwatch.Restart();
             //  Запуск сортування
             QuickSort(array, 0, array.Length - 1);
             stopwatch.Stop();

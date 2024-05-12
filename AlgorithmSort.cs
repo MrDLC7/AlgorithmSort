@@ -7,14 +7,21 @@ namespace AlgorithmSort
             InitializeComponent();
         }
 
-        private int size = 0;                   //  Кількість елементів масиву
-        private IComparable[]? array;           //  Основний масив елементів
-        private IComparable[]? arrayTemp;       //  Масив для сортування
+        private int size = 0;                               //  Кількість елементів масиву
+        private IComparable[]? array;                       //  Основний масив елементів
+        private IComparable[]? arrayTemp;                   //  Масив для сортування
 
+        private string InfoArray = string.Empty;            //  Рядок для результату проведених дій
+        private string Log = string.Empty;                  //  Рядок для виконаних дії
+
+        #region Generate
 
         //  Генерація масиву випадкових чисел
         private void button_GenerateArray_Click(object sender, EventArgs e)
         {
+            //  Очищення полів
+            ClearAll();
+
             //  Діапазон чисел для масиву
             int range = Convert.ToInt32(textBox_Range.Text);
 
@@ -32,9 +39,16 @@ namespace AlgorithmSort
             panelSort.Enabled = true;
 
             //  Відобразити масив і виконані дії
-            richTextBox_Array.Text = Print.InfoArray("Згенерований масив", array);
-            richTextBox_Log.Text += Print.InfoLog("Генерація масиву", size, generate.Time, "мк");
+            InfoArray = Print.InfoArray("Згенерований масив", array);
+            Log += Print.InfoLog("Генерація масиву", size, generate.Time, "мк");
+
+            richTextBox_Array.Text = InfoArray;
+            richTextBox_Log.Text = Log;
         }
+
+        #endregion Generate
+
+        #region BubbleSort
 
         //  Сортування бульбашкою
         private void button_BubbleSort_Click(object sender, EventArgs e)
@@ -44,13 +58,33 @@ namespace AlgorithmSort
             //  Копіювання для сортування з порівнням до початкового стану
             CopyArray(array, arrayTemp);
 
+            //  Сотрування - випадкового масиву
             sort.Bubble(arrayTemp);
+            InfoArray = Print.InfoArray("Згенерований масив", array);
+            InfoArray += Print.InfoArray("Відсортований масив", arrayTemp);
+            Log += Print.InfoLog("Сортування бульбашкою - Випадкового масиву", size, sort.Time, "мк");
 
-            richTextBox_Array.Text = Print.InfoArray("Згенерований масив", array);
-            richTextBox_Array.Text += Print.InfoArray("Відсортований масив", arrayTemp);
+            //  Сотрування вже - відсортованого масиву за зростанням - Зростаючого масиву
+            InfoArray += Print.InfoArray("Масив - за зростанням", arrayTemp);
+            sort.Bubble(arrayTemp);
+            InfoArray += Print.InfoArray("Відсортований масив", arrayTemp);
+            Log += Print.InfoLog("Сортування бульбашкою - Зростаючого масиву", size, sort.Time, "мк");
 
-            richTextBox_Log.Text += Print.InfoLog("Сортування бульбашкою", size, sort.Time, "мк");
+            //  Сотрування вже - відсортованого масиву за спаданням - Спадаючого масиву
+            Array.Reverse(arrayTemp);
+            InfoArray += Print.InfoArray("Масив - за спаданням", arrayTemp);
+            sort.Bubble(arrayTemp);
+            InfoArray += Print.InfoArray("Відсортований масив", arrayTemp);
+            Log += Print.InfoLog("Сортування бульбашкою - Спадаючого масиву", size, sort.Time, "мк");
+
+
+            richTextBox_Array.Text = InfoArray;
+            richTextBox_Log.Text = Log;
         }
+
+        #endregion BubbleSort
+
+        #region InsertSort
 
         //  Сортування вставками
         private void button_InsertSort_Click(object sender, EventArgs e)
@@ -60,13 +94,33 @@ namespace AlgorithmSort
             //  Копіювання для сортування з порівнням до початкового стану
             CopyArray(array, arrayTemp);
 
+            //  Сотрування - випадкового масиву
             sort.Insert(arrayTemp);
+            InfoArray = Print.InfoArray("Згенерований масив", array);
+            InfoArray += Print.InfoArray("Відсортований масив", arrayTemp);
+            Log += Print.InfoLog("Сортування вставками", size, sort.Time, "мк");
 
-            richTextBox_Array.Text = Print.InfoArray("Згенерований масив", array);
-            richTextBox_Array.Text += Print.InfoArray("Відсортований масив", arrayTemp);
+            //  Сотрування вже - відсортованого масиву за зростанням - Зростаючого масиву
+            InfoArray += Print.InfoArray("Масив - за зростанням", arrayTemp);
+            sort.Insert(arrayTemp);
+            InfoArray += Print.InfoArray("Відсортований масив", arrayTemp);
+            Log += Print.InfoLog("Сортування вставками - Зростаючого масиву", size, sort.Time, "мк");
 
-            richTextBox_Log.Text += Print.InfoLog("Сортування вставками", size, sort.Time, "мк");
+            //  Сотрування вже - відсортованого масиву за спаданням - Спадаючого масиву
+            Array.Reverse(arrayTemp);
+            InfoArray += Print.InfoArray("Масив - за спаданням", arrayTemp);
+            sort.Insert(arrayTemp);
+            InfoArray += Print.InfoArray("Відсортований масив", arrayTemp);
+            Log += Print.InfoLog("Сортування вставками - Спадаючого масиву", size, sort.Time, "мк");
+
+
+            richTextBox_Array.Text = InfoArray;
+            richTextBox_Log.Text = Log;
         }
+
+        #endregion InsertSort
+
+        #region MergeSort
 
         //  Сортування злиттям
         private void button_MergeSort_Click(object sender, EventArgs e)
@@ -76,14 +130,33 @@ namespace AlgorithmSort
             //  Копіювання для сортування з порівнням до початкового стану
             CopyArray(array, arrayTemp);
 
+            //  Сотрування - випадкового масиву
             sort.Merge(arrayTemp);
+            InfoArray = Print.InfoArray("Згенерований масив", array);
+            InfoArray += Print.InfoArray("Відсортований масив", arrayTemp);
+            Log += Print.InfoLog("Сортування злиттям", size, sort.Time, "мк");
 
-            richTextBox_Array.Text = Print.InfoArray("Згенерований масив", array);
-            richTextBox_Array.Text += Print.InfoArray("Відсортований масив", arrayTemp);
+            //  Сотрування вже - відсортованого масиву за зростанням - Зростаючого масиву
+            InfoArray += Print.InfoArray("Масив - за зростанням", arrayTemp);
+            sort.Merge(arrayTemp);
+            InfoArray += Print.InfoArray("Відсортований масив", arrayTemp);
+            Log += Print.InfoLog("Сортування злиттям - Зростаючого масиву", size, sort.Time, "мк");
 
-            richTextBox_Log.Text += Print.InfoLog("Сортування злиттям", size, sort.Time, "мк");
+            //  Сотрування вже - відсортованого масиву за спаданням - Спадаючого масиву
+            Array.Reverse(arrayTemp);
+            InfoArray += Print.InfoArray("Масив - за спаданням", arrayTemp);
+            sort.Merge(arrayTemp);
+            InfoArray += Print.InfoArray("Відсортований масив", arrayTemp);
+            Log += Print.InfoLog("Сортування злиттям - Спадаючого масиву", size, sort.Time, "мк");
+
+
+            richTextBox_Array.Text = InfoArray;
+            richTextBox_Log.Text = Log;
         }
 
+        #endregion MergeSort
+
+        #region QuickSort
         //  Швидке сортування
         private void button_QuickSort_Click(object sender, EventArgs e)
         {
@@ -92,13 +165,32 @@ namespace AlgorithmSort
             //  Копіювання для сортування з порівнням до початкового стану
             CopyArray(array, arrayTemp);
 
+            //  Сотрування - випадкового масиву
             sort.Quick(arrayTemp);
+            InfoArray = Print.InfoArray("Згенерований масив", array);
+            InfoArray += Print.InfoArray("Відсортований масив", arrayTemp);
+            Log += Print.InfoLog("Швидке сортування", size, sort.Time, "мк");
 
-            richTextBox_Array.Text = Print.InfoArray("Згенерований масив", array);
-            richTextBox_Array.Text += Print.InfoArray("Відсортований масив", arrayTemp);
+            //  Сотрування вже - відсортованого масиву за зростанням - Зростаючого масиву
+            InfoArray += Print.InfoArray("Масив - за зростанням", arrayTemp);
+            sort.Quick(arrayTemp);
+            InfoArray += Print.InfoArray("Відсортований масив", arrayTemp);
+            Log += Print.InfoLog("Швидке сортування - Зростаючого масиву", size, sort.Time, "мк");
 
-            richTextBox_Log.Text += Print.InfoLog("Швидке сортування", size, sort.Time, "мк");
+            //  Сотрування вже - відсортованого масиву за спаданням - Спадаючого масиву
+            Array.Reverse(arrayTemp);
+            InfoArray += Print.InfoArray("Масив - за спаданням", arrayTemp);
+            sort.Quick(arrayTemp);
+            InfoArray += Print.InfoArray("Відсортований масив", arrayTemp);
+            Log += Print.InfoLog("Швидке сортування - Спадаючого масиву", size, sort.Time, "мк");
+
+            richTextBox_Array.Text = InfoArray;
+            richTextBox_Log.Text = Log;
         }
+
+        #endregion QuickSort
+
+        #region OtherFunction
 
         //  Автопрокручування "Лог" в залежності від наповнення
         private void richTextBox_TextChanged(object sender, EventArgs e)
@@ -150,14 +242,14 @@ namespace AlgorithmSort
         //  Очищення вікна "Масив" і самого масиву
         private void button_ClearArray_Click(object sender, EventArgs e)
         {
-            richTextBox_Array.Text = "";
+            richTextBox_Array.Text = InfoArray = "";
             panelSort.Enabled = false;
         }
 
         //  Очищення вікна проведених дій "Лог"
         private void button_ClearLog_Click(object sender, EventArgs e)
         {
-            richTextBox_Log.Text = "";
+            richTextBox_Log.Text = Log = "";
         }
 
         //  Копіювання масиву
@@ -169,5 +261,13 @@ namespace AlgorithmSort
                 toArray[i++] = item;
             }
         }
+    
+        //  Очищення полів
+        private void ClearAll()
+        {
+            richTextBox_Array.Text =  richTextBox_Log.Text = InfoArray =  Log = "";
+        }
+
+        #endregion OtherFunction
     }
 }
